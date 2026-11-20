@@ -19,9 +19,32 @@
 //   - Constructor que los recibe y los guarda.
 //   - public void run() con el trabajo del hilo.
 
+class HiloFibonacci implements Runnable{
+
+    @Override
+    public void run() {
+
+        int n = 10;
+
+        int primerNumero = 1;
+        int segundoNumero = 1;
+        
+        for (int i = 0; i < n; i++) {
+
+            System.out.println(primerNumero);
+            System.out.println(segundoNumero);
+
+            primerNumero = primerNumero + segundoNumero;
+            segundoNumero = segundoNumero + primerNumero;
+        }
+    }
+}
+
 
 public class FibonacciRunnable {
     public static void main(String[] args) {
-        // TODO: crea el/los hilo(s) y arráncalos con start().
+        HiloFibonacci tarea = new HiloFibonacci();   
+        Thread hilo = new Thread(tarea);            
+        hilo.start();                                
     }
 }
