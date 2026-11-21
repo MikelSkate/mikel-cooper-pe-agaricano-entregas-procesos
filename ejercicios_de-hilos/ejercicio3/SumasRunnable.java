@@ -25,9 +25,37 @@
 //   - Constructor que los recibe y los guarda.
 //   - public void run() con el trabajo del hilo.
 
+class HiloSumas implements Runnable{
+
+    private int n;
+
+    public HiloSumas(int n) {
+        this.n = n;
+    }
+
+    @Override
+    public void run() {
+
+        int numero = 0;
+        
+        for (int i = 1; i <= n; i++) {
+            numero = numero + i;
+        }
+
+        System.out.println(numero + " / Suma calculada por el hilo " + Thread.currentThread().getName());
+    }
+}
 
 public class SumasRunnable {
     public static void main(String[] args) {
-        // TODO: crea el/los hilo(s) y arráncalos con start().
+        HiloSumas tarea1 = new HiloSumas(24);
+        HiloSumas tarea2 = new HiloSumas(34);
+        HiloSumas tarea3 = new HiloSumas(14);
+        Thread hilo = new Thread(tarea1, "primero");
+        hilo.start();
+        Thread hilo2 = new Thread(tarea2, "segundo");
+        hilo2.start();
+        Thread hilo3 = new Thread(tarea3, "tercero");
+        hilo3.start();
     }
 }
