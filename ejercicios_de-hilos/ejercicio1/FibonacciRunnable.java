@@ -21,29 +21,31 @@
 
 class HiloFibonacci implements Runnable{
 
+    private int n;
+
+    public HiloFibonacci(int n) {
+        this.n = n;
+    }
+
     @Override
     public void run() {
-
-        int n = 10;
 
         int primerNumero = 1;
         int segundoNumero = 1;
         
         for (int i = 0; i < n; i++) {
+            System.out.print(primerNumero + " ");
 
-            System.out.println(primerNumero);
-            System.out.println(segundoNumero);
-
-            primerNumero = primerNumero + segundoNumero;
-            segundoNumero = segundoNumero + primerNumero;
+            int suma = primerNumero + segundoNumero;
+            primerNumero = segundoNumero;
+            segundoNumero = suma;
         }
     }
 }
 
-
 public class FibonacciRunnable {
     public static void main(String[] args) {
-        HiloFibonacci tarea = new HiloFibonacci();   
+        HiloFibonacci tarea = new HiloFibonacci(10);   
         Thread hilo = new Thread(tarea);            
         hilo.start();                                
     }
