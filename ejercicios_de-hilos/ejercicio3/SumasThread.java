@@ -25,9 +25,35 @@
 //   - Constructor que los recibe y los guarda.
 //   - public void run() con el trabajo del hilo.
 
+class HiloSumasThread extends Thread{
+    
+    private int n;
+
+    public HiloSumasThread(int n, String nombre) {
+        super(nombre);
+        this.n = n;
+    }
+
+    @Override
+    public void run() {
+
+        int numero = 0;
+        
+        for (int i = 1; i <= n; i++) {
+            numero = numero + i;
+        }
+
+        System.out.println(numero + "Suma calculada por el hilo " + getName() + ": " + numero);
+    }
+}
 
 public class SumasThread {
     public static void main(String[] args) {
-        // TODO: crea el/los hilo(s) y arráncalos con start().
+        HiloSumasThread hilo1 = new HiloSumasThread(24, "primero");
+        HiloSumasThread hilo2 = new HiloSumasThread(34, "segundo");
+        HiloSumasThread hilo3 = new HiloSumasThread(14, "tercero");
+        hilo1.start();
+        hilo2.start();
+        hilo3.start();
     }
 }
