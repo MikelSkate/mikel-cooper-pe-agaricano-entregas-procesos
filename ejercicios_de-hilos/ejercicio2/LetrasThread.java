@@ -29,9 +29,32 @@
 //   - Constructor que los recibe y los guarda.
 //   - public void run() con el trabajo del hilo.
 
+class HiloLetrasThread extends Thread{
+
+    private int n;
+    private char letra;
+
+    public HiloLetrasThread(int n, char letra) {
+        this.n = n;
+        this.letra = letra;
+    }
+
+    @Override
+    public void run() {
+        
+        for (int i = 0; i < n; i++) {
+            System.out.print(letra + " ");
+        }
+    }
+}
 
 public class LetrasThread {
     public static void main(String[] args) {
-        // TODO: crea el/los hilo(s) y arráncalos con start().
+        HiloLetrasThread hilo1 = new HiloLetrasThread(1000, 't');
+        HiloLetrasThread hilo2 = new HiloLetrasThread(1000, 'x');
+        HiloLetrasThread hilo3 = new HiloLetrasThread(1000, 'a');
+        hilo1.start();
+        hilo2.start();
+        hilo3.start();
     }
 }
